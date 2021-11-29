@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>階層ToDoリスト</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script type="sample.json" id="json-data"></script>
   </head>
   <body>
     <p>階層ToDoリストのページです。</p>
@@ -22,9 +21,10 @@
     }).then(
       function (json) {
           console.log("読み込みに成功しました");
-          console.log(json)
-          json.forEach(function (data) {
-              console.log(data)
+          console.log(json);
+          var todoList = json["list"]
+          todoList.forEach((element) => {
+            console.log(element["title"])
           });
       },
       function () {
