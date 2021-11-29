@@ -31,10 +31,7 @@
         console.log("読み込みに成功しました");
         console.log(json);
         var todoList = json["list"]
-        todoList.forEach((element) => {
-          reflexive(todoList);
-          console.log(element["title"])
-        });
+        reflexive(todoList);
       },
       function () {
         console.log("読み込みに失敗しました");
