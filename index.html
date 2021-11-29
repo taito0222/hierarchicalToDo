@@ -9,11 +9,13 @@
     <p>階層ToDoリストのページです。</p>
     <input type="text" id="inputToDo" required minlength="1" maxlength="10" size="20">
     <button id="inputButton">追加</button>
+    <p>--- ToDoリスト ---</p>
+    <ul></ul>
   </body>
   <script>
     $('#inputButton').on('click', function() {
-      alert("クリックされました");
-      var target = $('#inputToDo').val();
+      var target = '<li>' + $('#inputToDo').val() + '</li>';
+      $('ul').append(target);
       $('#inputToDo').val('');
     });
   </script>
