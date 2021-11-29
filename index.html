@@ -4,15 +4,33 @@
     <meta charset="utf-8">
     <title>階層ToDoリスト</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="sample.json" id="json-data"></script>
   </head>
   <body>
     <p>階層ToDoリストのページです。</p>
-    <input type="text" id="inputToDo" required minlength="1" maxlength="10" size="20">
+    <input type="text" id="inputToDo" required minlength="1" maxlength="15" size="20">
     <button id="inputButton">追加</button>
     <p>--- ToDoリスト ---</p>
     <ul></ul>
   </body>
   <script>
+    $.ajax({
+      type: "GET",
+      url: "sample.json", // ファイルパス（相対パス）
+      dataType: "json", // ファイル形式
+      async: false // 非同期通信フラグ
+    }).then(
+      function (json) {
+          console.log("読み込みに成功しました");
+          console.log(json)
+          json.forEach(function (data) {
+              console.log(data)
+          });
+      },
+      function () {
+          console.log("読み込みに失敗しました");
+      }
+    );
     $('#inputButton').on('click', function() {
       var target = '<li>' + $('#inputToDo').val() + '</li>';
       $('ul').append(target);
