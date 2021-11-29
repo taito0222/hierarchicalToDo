@@ -3,9 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>階層ToDoリスト</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   </head>
   <body>
     <p>階層ToDoリストのページです。</p>
-    <input type="text" id="name" required minlength="4" maxlength="8" size="10">
+    <input type="text" id="inputToDo" required minlength="1" maxlength="10" size="20">
+    <button id="inputButton">追加</button>
   </body>
+  <script>
+    $('#button').on('click', function() {
+      alert("クリックされました");
+      var target = $('#inputToDo').val();
+      $('#inputToDo').val('');
+    });
+  </script>
 </html>
