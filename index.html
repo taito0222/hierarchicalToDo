@@ -20,15 +20,24 @@
       async: false // 非同期通信フラグ
     }).then(
       function (json) {
-          console.log("読み込みに成功しました");
-          console.log(json);
-          var todoList = json["list"]
-          todoList.forEach((element) => {
+        let reflexive = (list) => {
+          list.forEach((element) => {
             console.log(element["title"])
+            if ("subList" in element) {
+              reflexive(element["subList"]);
+            }
           });
+        };
+        console.log("読み込みに成功しました");
+        console.log(json);
+        var todoList = json["list"]
+        todoList.forEach((element) => {
+          reflexive(todoList);
+          console.log(element["title"])
+        });
       },
       function () {
-          console.log("読み込みに失敗しました");
+        console.log("読み込みに失敗しました");
       }
     );
     $('#inputButton').on('click', function() {
