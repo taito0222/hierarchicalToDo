@@ -13,6 +13,7 @@
     <ul></ul>
   </body>
   <script>
+    let todoElement = "";
     $.ajax({
       type: "GET",
       url: "sample.json", // ファイルパス（相対パス）
@@ -21,17 +22,19 @@
     }).then(
       function (json) {
         let reflexive = (list) => {
+          todoElement = todoElement + "<ul>"
           list.forEach((element) => {
             console.log(element["title"])
+            todoElement = todoElement + "<li>" + element["title"] + "</li>"
             if ("subList" in element) {
               reflexive(element["subList"]);
             }
+          todoElement = todoElement + "</ul>"
           });
         };
-        console.log("読み込みに成功しました");
-        console.log(json);
         var todoList = json["list"]
         reflexive(todoList);
+        $('ul').append(todoElement);
       },
       function () {
         console.log("読み込みに失敗しました");
