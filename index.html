@@ -27,8 +27,8 @@
             todoElement = todoElement + "<li>" + element["title"] + "</li>"
             if ("subList" in element) {
               reflexive(element["subList"]);
+              todoElement = todoElement + "</ul>"
             }
-            todoElement = todoElement + "</ul>"
           });
         };
         var todoList = json["list"]
