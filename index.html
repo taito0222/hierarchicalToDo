@@ -10,7 +10,7 @@
     <input type="text" id="inputToDo" required minlength="1" maxlength="15" size="20">
     <button id="inputButton">追加</button>
     <p>--- ToDoリスト ---</p>
-    <div id="todoList"></div>
+    <ul id="todoList"></ul>
   </body>
   <script>
     let todoElement = "";
@@ -22,10 +22,10 @@
     }).then(
       function (json) {
         let reflexive = (list) => {
-          todoElement = todoElement + "<ul>"
           list.forEach((element) => {
             todoElement = todoElement + "<li>" + element["title"] + "</li>"
             if ("subList" in element) {
+              todoElement = todoElement + "<ul>"
               reflexive(element["subList"]);
               todoElement = todoElement + "</ul>"
             }
