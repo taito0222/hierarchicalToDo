@@ -10,7 +10,7 @@
     <input type="text" id="inputToDo" required minlength="1" maxlength="15" size="20">
     <button id="inputButton">追加</button>
     <p>--- ToDoリスト ---</p>
-    <ul></ul>
+    <div id="todoList"></div>
   </body>
   <script>
     let todoElement = "";
@@ -24,7 +24,6 @@
         let reflexive = (list) => {
           todoElement = todoElement + "<ul>"
           list.forEach((element) => {
-            console.log(element["title"])
             todoElement = todoElement + "<li>" + element["title"] + "</li>"
             if ("subList" in element) {
               reflexive(element["subList"]);
@@ -34,7 +33,7 @@
         };
         var todoList = json["list"]
         reflexive(todoList);
-        $('ul').append(todoElement);
+        $('#todoList').append(todoElement);
       },
       function () {
         console.log("読み込みに失敗しました");
