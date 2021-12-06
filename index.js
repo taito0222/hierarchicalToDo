@@ -1,11 +1,12 @@
 let todoElement = "";
 $.ajax({
   type: "GET",
-  url: "//hierarchical-todo.s3.ap-northeast-1.amazonaws.com/sample.json", // ファイルパス（相対パス）
+  url: "sample.json", // ファイルパス（相対パス）
   dataType: "json", // ファイル形式
   async: false // 非同期通信フラグ
 }).then(
   function (json) {
+    localStorage.setItem('todoList', json);
     let reflexive = (list) => {
       list.forEach((element) => {
         todoElement = todoElement + "<li>" + element["title"] + "</li>"
