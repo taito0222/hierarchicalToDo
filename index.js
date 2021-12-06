@@ -1,7 +1,7 @@
 let todoElement = "";
 $.ajax({
   type: "GET",
-  url: "sample.json", // ファイルパス（相対パス）
+  url: "//hierarchical-todo.s3.ap-northeast-1.amazonaws.com/sample.json", // ファイルパス（相対パス）
   dataType: "json", // ファイル形式
   async: false // 非同期通信フラグ
 }).then(
