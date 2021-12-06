@@ -1,4 +1,5 @@
 let todoElement = "";
+//
 $.ajax({
   type: "GET",
   url: "sample.json", // ファイルパス（相対パス）
@@ -6,7 +7,7 @@ $.ajax({
   async: false // 非同期通信フラグ
 }).then(
   function (json) {
-    localStorage.setItem('todoList', json);
+    let obj = JSON.stringify(json);
     let reflexive = (list) => {
       list.forEach((element) => {
         todoElement = todoElement + "<li>" + element["title"] + "</li>"
@@ -17,7 +18,8 @@ $.ajax({
         }
       });
     };
-    var todoList = json["list"]
+    localStorage.setItem('todoList', obj);
+    let todoList = json["list"]
     reflexive(todoList);
     $('#todoList').append(todoElement);
   },
