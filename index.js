@@ -3,6 +3,7 @@ let todoNo = 0;
 let todoList = "";
 // listオブジェクトからhtml要素を作成
 let makeTodoList = (list) => {
+  todoNo = 0;
   list.forEach((element) => {
     todoNo++;
     console.log(todoNo);
@@ -17,6 +18,7 @@ let makeTodoList = (list) => {
       todoElement = todoElement + "</ul>";
     }
   })
+  $('#todoList').append(todoElement);
 };
 // todoList テンプレート作成
 let maketemplate = () => {
@@ -38,7 +40,6 @@ todoList = localStorage.getItem("todoList");
 todoList = JSON.parse(todoList);
 if (todoList) {
   makeTodoList(todoList["list"]);
-  $('#todoList').append(todoElement);
 } else {
   maketemplate();
 }
