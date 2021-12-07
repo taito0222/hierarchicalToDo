@@ -26,7 +26,28 @@ let makeHTMLElement = (list) => {
       todoElement = todoElement + "</ul>";
     }
   })
-};
+}
+// todoListの再起的操作
+let deleteTodoList = (deleteNo) => {
+  let tempList = [];
+  let recursive = (list, deleteNo) => {
+    todoNo++;
+    if (deleteNo != list["todoNo"]) {
+      let pushList = {"title":"","todoNo":""};
+      pushList["title"] = list["todoNo"]["title"];
+      pushList["todoNo"] = String(todoNo);
+      tempList.push()
+    }
+    list.forEach((element) => {
+      if ("list" in element) {
+        recursive(element["list"]);
+      }
+    })
+  }
+  todoNo = 0;
+  recursive(todoList["list"], deleteNo);
+  todoList["list"] = tempList;
+}
 // localstorage取得
 let getLocalStorage = () => {
   todoList = JSON.parse(localStorage.getItem("todoList"));
@@ -64,7 +85,7 @@ $('#attribute').on('click', function() {
 $('#remove').on('click', function() {
   getLocalStorage();
   removeTodoNo = $('[name=list]:checked').val();
-  removeTodo(todoList["list"]);
+  deleteTodoList(removeTodoNo);
   setLocalStorage();
   makeTodoList(todoList["list"]);
 });
