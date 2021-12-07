@@ -1,7 +1,6 @@
 let todoElement = "";
 let todoList = {};
 let todoNo = 0;
-let removeTodoNo = 0;
 // ToDoリストの更新
 let makeTodoList = (list) => {
   todoNo = 0;
@@ -27,14 +26,14 @@ let makeHTMLElement = (list) => {
     }
   })
 }
-// todoListの再起的操作
+// todoListの削除
 let deleteTodoList = (deleteNo) => {
   let tempList = [];
   let recursive = (list, deleteNo) => {
     todoNo++;
     if (deleteNo != list["todoNo"]) {
       let pushList = {"title":"","todoNo":""};
-      pushList["title"] = list["todoNo"]["title"];
+      pushList["title"] = list["title"];
       pushList["todoNo"] = String(todoNo);
       tempList.push()
     }
@@ -84,8 +83,8 @@ $('#attribute').on('click', function() {
 // 削除ボタン押下時
 $('#remove').on('click', function() {
   getLocalStorage();
-  removeTodoNo = $('[name=list]:checked').val();
-  deleteTodoList(removeTodoNo);
+  let deleteTodoNo = $('[name=list]:checked').val();
+  deleteTodoList(deleteTodoNo);
   setLocalStorage();
   makeTodoList(todoList["list"]);
 });
