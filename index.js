@@ -5,7 +5,7 @@ let todoList = "";
 let makeTodoList = (list) => {
   todoNo = 0;
   todoElement = ""
-  $('#todoList').remove();
+  $('#todoList').empty();
   makeHTMLElement(list);
   $('#todoList').append(todoElement);
 }
@@ -26,11 +26,6 @@ let makeHTMLElement = (list) => {
     }
   })
 };
-// todoList テンプレート作成
-let maketemplate = () => {
-  let template = JSON.stringify({"version":"1.00","list":[]});
-  localStorage.setItem("todoList", template);
-}
 // localstorage取得
 let getLocalStorage = () => {
   let localJSON = localStorage.getItem("todoList");
@@ -47,7 +42,9 @@ todoList = JSON.parse(todoList);
 if (todoList) {
   makeTodoList(todoList["list"]);
 } else {
-  maketemplate();
+  // 初回利用時
+  let template = JSON.stringify({"version":"1.00","list":[]});
+  localStorage.setItem("todoList", template);
 }
 // 追加ボタン押下時
 $('#attribute').on('click', function() {
