@@ -26,9 +26,9 @@ let makeHTMLElement = (list) => {
   })
 }
 // todoListの追加
-let insertTodoList = (title, insertNo) => {
+let insertTodoList = (insertTitle, insertNo) => {
   let tempList = [];
-  let recursive = (list, insertNo) => {
+  let recursive = (list, insertTitle, insertNo) => {
     list.forEach((element) => {
       todoNo++;
       let pushobj = {};
@@ -37,7 +37,7 @@ let insertTodoList = (title, insertNo) => {
         pushobj["todoNo"] = String(todoNo);
         todoNo++;
         pushobj["list"] = element["list"];
-        pushobj["list"].push({"title":title,"todoNo":String(todoNo)});
+        pushobj["list"].push({"title":insertTitle,"todoNo":String(todoNo)});
         tempList.push(pushobj);
       } else if (insertNo == element["todoNo"] && "list" in element == false) {
         pushobj["title"] = element["title"];
@@ -56,12 +56,12 @@ let insertTodoList = (title, insertNo) => {
         tempList.push(pushobj);
       }
       if ("list" in element) {
-        recursive(element["list"]);
+        recursive(element["list"], insertTitle, insertNo);
       }
     })
   }
   todoNo = 0;
-  recursive(todoList["list"], insertNo);
+  recursive(todoList["list"]);
   todoList["list"] = tempList;
 }
 // todoListの削除
@@ -122,7 +122,6 @@ $('#attribute').on('click', function() {
 $('#remove').on('click', function() {
   getLocalStorage();
   let deleteTodoNo = $('[name=list]:checked').val();
-  console.log("deleteTodoNo : " + deleteTodoNo);
   deleteTodoList(deleteTodoNo);
   setLocalStorage();
   makeTodoList(todoList["list"]);
