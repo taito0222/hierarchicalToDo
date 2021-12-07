@@ -29,8 +29,8 @@ let makeHTMLElement = (list) => {
 let deleteTodoList = (deleteNo) => {
   let tempList = [];
   let recursive = (list, deleteNo) => {
-    todoNo++;
     list.forEach((element) => {
+      todoNo++;
       if (deleteNo != list["todoNo"]) {
         let pushList = {"title":"","todoNo":""};
         pushList["title"] = list["title"];
