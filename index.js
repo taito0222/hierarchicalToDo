@@ -1,9 +1,15 @@
 let todoElement = "";
 let todoNo = 0;
 let todoList = "";
-// listオブジェクトからhtml要素を作成
+// ToDoリストの更新
 let makeTodoList = (list) => {
   todoNo = 0;
+  todoElement = ""
+  makeHTMLElement(list);
+  $('#todoList').append(todoElement);
+}
+// listオブジェクトからhtml要素を作成
+let makeHTMLElement = (list) => {
   list.forEach((element) => {
     todoNo++;
     console.log(todoNo);
@@ -14,11 +20,10 @@ let makeTodoList = (list) => {
     todoElement = todoElement + "</li>" // リスト終了タグ
     if ("list" in element) {
       todoElement = todoElement + "<ul>";
-      makeTodoList(element["list"]);
+      makeHTMLElement(element["list"]);
       todoElement = todoElement + "</ul>";
     }
   })
-  $('#todoList').append(todoElement);
 };
 // todoList テンプレート作成
 let maketemplate = () => {
