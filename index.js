@@ -13,7 +13,6 @@ let makeTodoList = (list) => {
 let makeHTMLElement = (list) => {
   list.forEach((element) => {
     todoNo++;
-    console.log(todoNo);
     todoElement = todoElement + "<li>" // リスト開始タグ
     todoElement = todoElement + '<input type="radio" name="list" value="' // ラジオボタン
     todoElement = todoElement + String(todoNo) + '">'
@@ -84,6 +83,7 @@ $('#attribute').on('click', function() {
 $('#remove').on('click', function() {
   getLocalStorage();
   let deleteTodoNo = $('[name=list]:checked').val();
+  console.log("deleteTodoNo : " + deleteTodoNo);
   deleteTodoList(deleteTodoNo);
   setLocalStorage();
   makeTodoList(todoList["list"]);
