@@ -34,7 +34,7 @@ let deleteTodoList = (deleteNo) => {
       let pushList = {"title":"","todoNo":""};
       pushList["title"] = list["title"];
       pushList["todoNo"] = String(todoNo);
-      tempList.push()
+      tempList.push(pushList);
     }
     list.forEach((element) => {
       if ("list" in element) {
