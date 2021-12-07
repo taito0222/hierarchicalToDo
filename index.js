@@ -5,6 +5,7 @@ let todoList = "";
 let makeTodoList = (list) => {
   todoNo = 0;
   todoElement = ""
+  $('#todoList').remove();
   makeHTMLElement(list);
   $('#todoList').append(todoElement);
 }
