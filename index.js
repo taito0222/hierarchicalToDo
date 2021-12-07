@@ -30,13 +30,13 @@ let deleteTodoList = (deleteNo) => {
   let tempList = [];
   let recursive = (list, deleteNo) => {
     todoNo++;
-    if (deleteNo != list["todoNo"]) {
-      let pushList = {"title":"","todoNo":""};
-      pushList["title"] = list["title"];
-      pushList["todoNo"] = String(todoNo);
-      tempList.push(pushList);
-    }
     list.forEach((element) => {
+      if (deleteNo != list["todoNo"]) {
+        let pushList = {"title":"","todoNo":""};
+        pushList["title"] = list["title"];
+        pushList["todoNo"] = String(todoNo);
+        tempList.push(pushList);
+      }
       if ("list" in element) {
         recursive(element["list"]);
       }
@@ -45,7 +45,6 @@ let deleteTodoList = (deleteNo) => {
   todoNo = 0;
   recursive(todoList["list"], deleteNo);
   todoList["list"] = tempList;
-  console.log("todoList : " + todoList);
 }
 // localstorage取得
 let getLocalStorage = () => {
