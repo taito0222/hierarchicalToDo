@@ -18,7 +18,6 @@ let maketemplate = () => {
 // localstorageチェック
 let todoList = localStorage.getItem("todoList");
 todoList = JSON.parse(todoList);
-console.log(todoList);
 if (todoList) {
   makeTodoList(todoList["list"]);
   $('#todoList').append(todoElement);
@@ -26,8 +25,8 @@ if (todoList) {
   maketemplate();
 }
 
-$('#inputButton').on('click', function() {
+$('#rootAttribute').on('click', function() {
   var target = '<li>' + $('#inputToDo').val() + '</li>';
-  $('ul').append(target);
+  $('.todoList').append(target);
   $('#inputToDo').val('');
 });
