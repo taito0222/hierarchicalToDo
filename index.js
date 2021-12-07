@@ -45,6 +45,7 @@ let deleteTodoList = (deleteNo) => {
   todoNo = 0;
   recursive(todoList["list"], deleteNo);
   todoList["list"] = tempList;
+  console.log("todoList : " + todoList);
 }
 // localstorage取得
 let getLocalStorage = () => {
@@ -82,7 +83,7 @@ $('#attribute').on('click', function() {
 // 削除ボタン押下時
 $('#remove').on('click', function() {
   getLocalStorage();
-  let deleteTodoNo = Number($('[name=list]:checked').val());
+  let deleteTodoNo = $('[name=list]:checked').val();
   console.log("deleteTodoNo : " + deleteTodoNo);
   deleteTodoList(deleteTodoNo);
   setLocalStorage();
