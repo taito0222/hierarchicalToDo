@@ -8,7 +8,7 @@ let makeTodoList = (list) => {
       makeTodoList(element["subList"]);
       todoElement = todoElement + "</ul>"
     }
-  });
+  })
 };
 // todoList テンプレート作成
 let maketemplate = () => {
