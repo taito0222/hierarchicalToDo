@@ -2,7 +2,10 @@ let todoElement = "";
 // listオブジェクトからhtml要素を作成
 let makeTodoList = (list) => {
   list.forEach((element) => {
-    todoElement = todoElement + "<li>" + element["title"] + "</li>"
+    todoElement = todoElement + "<li>" // リスト開始タグ
+    todoElement = todoElement + '<input type="radio" name="q1" value="はい"> はい' // ラジオボタン
+    todoElement = todoElement + element["title"] // タイトル
+    todoElement = todoElement + "</li>" // リスト終了タグ
     if ("subList" in element) {
       todoElement = todoElement + "<ul>";
       makeTodoList(element["subList"]);
@@ -27,6 +30,6 @@ if (todoList) {
 
 $('#rootAttribute').on('click', function() {
   var target = '<li>' + $('#inputToDo').val() + '</li>';
-  $('.todoList').append(target);
+  $('#todoList').append(target);
   $('#inputToDo').val('');
 });
