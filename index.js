@@ -31,9 +31,9 @@ let deleteTodoList = (deleteNo) => {
   let recursive = (list, deleteNo) => {
     list.forEach((element) => {
       todoNo++;
-      if (deleteNo != list["todoNo"]) {
+      if (deleteNo != element["todoNo"]) {
         let pushList = {"title":"","todoNo":""};
-        pushList["title"] = list["title"];
+        pushList["title"] = element["title"];
         pushList["todoNo"] = String(todoNo);
         tempList.push(pushList);
       }
