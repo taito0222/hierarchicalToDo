@@ -3,7 +3,7 @@ let todoElement = "";
 let makeTodoList = (list) => {
   list.forEach((element) => {
     todoElement = todoElement + "<li>" // リスト開始タグ
-    todoElement = todoElement + '<input type="radio" name="q1" value="はい"> はい' // ラジオボタン
+    todoElement = todoElement + '<input type="radio" name="list">' // ラジオボタン
     todoElement = todoElement + element["title"] // タイトル
     todoElement = todoElement + "</li>" // リスト終了タグ
     if ("subList" in element) {
