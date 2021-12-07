@@ -25,6 +25,44 @@ let makeHTMLElement = (list) => {
     }
   })
 }
+// todoListの追加
+let insertTodoList = (title, insertNo) => {
+  let tempList = [];
+  let recursive = (list, insertNo) => {
+    list.forEach((element) => {
+      todoNo++;
+      pushList = {"title":"","todoNo":""};
+      if (insertNo == element["todoNo"] && "list" in element == true) {
+        pushobj["title"] = element["title"];
+        pushobj["todoNo"] = String(todoNo);
+        todoNo++;
+        pushobj["list"].push({"title":title,"todoNo":String(todoNo)});
+        tempList.push(pushobj);
+      } else if (insertNo == element["todoNo"] && "list" in element == false) {
+        pushobj["title"] = element["title"];
+        pushobj["todoNo"] = String(todoNo);
+        todoNo++;
+        pushobj["list"] = [{"title":title,"todoNo":String(todoNo)}];
+        tempList.push(pushobj);
+      } else if (insertNo != element["todoNo"] && "list" in element == true) {
+        pushobj["title"] = element["title"];
+        pushobj["todoNo"] = String(todoNo);
+        pushobj["list"] = element["list"];
+        tempList.push(pushobj);
+      } else {
+        pushobj["title"] = element["title"];
+        pushobj["todoNo"] = String(todoNo);
+        tempList.push(pushobj);
+      }
+      if ("list" in element) {
+        recursive(element["list"]);
+      }
+    })
+  }
+  todoNo = 0;
+  recursive(todoList["list"], insertNo);
+  todoList["list"] = tempList;
+}
 // todoListの削除
 let deleteTodoList = (deleteNo) => {
   let tempList = [];
