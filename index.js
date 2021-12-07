@@ -34,7 +34,7 @@ let setLocalStorage = () => {
   localStorage.setItem("todoList", memoryobj);
 }
 // localstorageチェック
-let todoList = localStorage.getItem("todoList");
+todoList = localStorage.getItem("todoList");
 todoList = JSON.parse(todoList);
 if (todoList) {
   makeTodoList(todoList["list"]);
