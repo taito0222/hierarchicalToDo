@@ -1,6 +1,7 @@
 let todoElement = "";
+let todoList = {};
 let todoNo = 0;
-let todoList = "";
+let removeTodoNo = 0;
 // ToDoリストの更新
 let makeTodoList = (list) => {
   todoNo = 0;
@@ -28,17 +29,15 @@ let makeHTMLElement = (list) => {
 };
 // localstorage取得
 let getLocalStorage = () => {
-  let localJSON = localStorage.getItem("todoList");
-  todoList = JSON.parse(localJSON);
+  todoList = JSON.parse(localStorage.getItem("todoList"));
 }
 // localstorage登録
 let setLocalStorage = () => {
-  let memoryobj = JSON.stringify(todoList);
+  let setJSON = JSON.stringify(todoList);
   localStorage.setItem("todoList", memoryobj);
 }
 // localstorageチェック
-todoList = localStorage.getItem("todoList");
-todoList = JSON.parse(todoList);
+getLocalStorage();
 if (todoList) {
   makeTodoList(todoList["list"]);
 } else {
@@ -51,12 +50,21 @@ $('#attribute').on('click', function() {
   getLocalStorage();
   let radioValue = $('[name=list]:checked').val();
   if (radioValue) {
+
   } else {
     let pushList = {"title":"","todoNo":""};
     pushList["title"] = $('#inputToDo').val();
     pushList["todoNo"] = String(todoNo + 1);
     todoList["list"].push(pushList);
   }
+  setLocalStorage();
+  makeTodoList(todoList["list"]);
+});
+// 削除ボタン押下時
+$('#remove').on('click', function() {
+  getLocalStorage();
+  removeTodoNo = $('[name=list]:checked').val();
+  removeTodo(todoList["list"]);
   setLocalStorage();
   makeTodoList(todoList["list"]);
 });
