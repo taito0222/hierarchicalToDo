@@ -42,7 +42,7 @@ if (todoList) {
 } else {
   maketemplate();
 }
-
+// 追加ボタン押下時
 $('#attribute').on('click', function() {
   getLocalStorage();
   let radioValue = $('[name=list]:checked').val();
@@ -53,5 +53,5 @@ $('#attribute').on('click', function() {
     todoList["list"].push(pushList);
   }
   setLocalStorage();
-  maketodoList(todoList["list"]);
+  makeTodoList(todoList["list"]);
 });
