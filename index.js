@@ -107,7 +107,7 @@ $('#attribute').on('click', function() {
   getLocalStorage();
   let radioValue = $('[name=list]:checked').val();
   if (radioValue) {
-
+    insertTodoList($('#inputToDo').val(), radioValue);
   } else {
     let pushList = {"title":"","todoNo":""};
     pushList["title"] = $('#inputToDo').val();
