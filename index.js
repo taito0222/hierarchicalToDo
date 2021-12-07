@@ -61,7 +61,7 @@ let insertTodoList = (insertTitle, insertNo) => {
     })
   }
   todoNo = 0;
-  recursive(todoList["list"]);
+  recursive(todoList["list"], insertTitle, insertNo);
   todoList["list"] = tempList;
 }
 // todoListの削除
