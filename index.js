@@ -17,6 +17,7 @@ let maketemplate = () => {
 }
 // localstorageチェック
 let todoList = localStorage.getItem("todoList");
+todoList = JSON.parse(todoList);
 console.log(todoList);
 if (todoList) {
   makeTodoList(todoList["list"]);
