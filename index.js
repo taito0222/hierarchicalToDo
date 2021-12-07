@@ -54,7 +54,7 @@ let getLocalStorage = () => {
 // localstorage登録
 let setLocalStorage = () => {
   let setJSON = JSON.stringify(todoList);
-  localStorage.setItem("todoList", memoryobj);
+  localStorage.setItem("todoList", setJSON);
 }
 // localstorageチェック
 getLocalStorage();
