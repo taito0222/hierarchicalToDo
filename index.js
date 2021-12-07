@@ -31,11 +31,12 @@ let insertTodoList = (title, insertNo) => {
   let recursive = (list, insertNo) => {
     list.forEach((element) => {
       todoNo++;
-      pushList = {"title":"","todoNo":""};
+      let pushobj = {};
       if (insertNo == element["todoNo"] && "list" in element == true) {
         pushobj["title"] = element["title"];
         pushobj["todoNo"] = String(todoNo);
         todoNo++;
+        pushobj["list"] = element["list"];
         pushobj["list"].push({"title":title,"todoNo":String(todoNo)});
         tempList.push(pushobj);
       } else if (insertNo == element["todoNo"] && "list" in element == false) {
