@@ -34,7 +34,7 @@ let insertTodoList = (insertTitle, insertNo) => {
       let pushobj = {};
       pushobj["title"] = element["title"];
       pushobj["todoNo"] = String(todoNo);
-      if (insertNo == element["todoNo"] && "list" in element == true) {
+      if (insertNo == element["todoNo"]) {
         todoNo++;
         if ("list" in element == true) {
           pushobj["list"] = element["list"];
