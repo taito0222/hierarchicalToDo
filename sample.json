@@ -2,39 +2,30 @@
   "version": "1.00",
   "list" : [
     {
-      "title" : "1つめのやることです"
+      "title" : "1つめのやることです",
+      "todoNo" : "1"
     },
     {
       "title" : "2つめのやることです",
+      "todoNo" : "2",
       "list" : [
         {
           "title" : "2つめのやることのサブです",
-          "subList" : [
+          "todoNo" : "3",
+          "list" : [
             {
               "title" : "2つめのやることのサブのサブです",
-              "subList" : [
-                {
-                  "title" : "wei",
-                  "subList" : [
-                    {
-                      "title" : "ui",
-                      "subList" : [
-                        {
-                          "title" : "santos"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
+              "todoNo" : "4"
             }
           ]
         },
         {
-          "title" : "2つめのやることのサブ2つめです"
+          "title" : "2つめのやることのサブ2つめです",
+          "todoNo" : "5"
         },
         {
-          "title" : "2つめのやることのサブ3つめです"
+          "title" : "2つめのやることのサブ3つめです",
+          "todoNo" : "6"
         }
       ]
     }

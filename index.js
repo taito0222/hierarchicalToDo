@@ -33,29 +33,26 @@ let insertTodoList = (insertTitle, insertNo) => {
       todoNo++;
       let pushobj = {};
       pushobj["title"] = element["title"];
-      pushobj["todoNo"] = String(todoNo);
+      pushobj["todoNo"] = element["todoNo"];
       if (insertNo == element["todoNo"]) {
         todoNo++;
         if ("list" in element == true) {
-          pushobj["list"] = element["list"];
+          pushobj["list"] = recursive(element["list"], insertTitle, insertNo);
           pushobj["list"].push({"title":insertTitle,"todoNo":String(todoNo)});
-          recursive(element["list"], insertTitle, insertNo);
         } else {
           pushobj["list"] = [{"title":insertTitle,"todoNo":String(todoNo)}];
         }
       } else {
-        pushobj["todoNo"] = String(todoNo);
         if ("list" in element == true) {
-          pushobj["list"] = element["list"];
-          recursive(element["list"], insertTitle, insertNo);
+          pushobj["list"] = recursive(element["list"], insertTitle, insertNo);
         }
       }
       tempList.push(pushobj);
     })
+    return tempList;
   }
   todoNo = 0;
-  recursive(todoList["list"], insertTitle, insertNo);
-  todoList["list"] = tempList;
+  todoList["list"] = recursive(todoList["list"], insertTitle, insertNo);
 }
 // todoListの削除
 let deleteTodoList = (deleteNo) => {
@@ -102,6 +99,7 @@ $('#attribute').on('click', function() {
   let radioValue = $('[name=list]:checked').val();
   if (radioValue) {
     insertTodoList($('#inputToDo').val(), radioValue);
+    updateTodoNo();
   } else {
     let pushList = {"title":"","todoNo":""};
     pushList["title"] = $('#inputToDo').val();
