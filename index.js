@@ -39,6 +39,7 @@ let insertTodoList = (insertTitle, insertNo) => {
         if ("list" in element == true) {
           pushobj["list"] = element["list"];
           pushobj["list"].push({"title":insertTitle,"todoNo":String(todoNo)});
+          recursive(element["list"], insertTitle, insertNo);
         } else {
           pushobj["list"] = [{"title":insertTitle,"todoNo":String(todoNo)}];
         }
@@ -46,12 +47,10 @@ let insertTodoList = (insertTitle, insertNo) => {
         pushobj["todoNo"] = String(todoNo);
         if ("list" in element == true) {
           pushobj["list"] = element["list"];
+          recursive(element["list"], insertTitle, insertNo);
         }
       }
       tempList.push(pushobj);
-      if ("list" in element) {
-        recursive(element["list"], insertTitle, insertNo);
-      }
     })
   }
   todoNo = 0;
@@ -109,14 +108,14 @@ $('#attribute').on('click', function() {
     pushList["todoNo"] = String(todoNo + 1);
     todoList["list"].push(pushList);
   }
-  setLocalStorage();
   makeTodoList(todoList["list"]);
+  setLocalStorage();
 });
 // 削除ボタン押下時
 $('#remove').on('click', function() {
   getLocalStorage();
   let deleteTodoNo = $('[name=list]:checked').val();
   deleteTodoList(deleteTodoNo);
-  setLocalStorage();
   makeTodoList(todoList["list"]);
+  setLocalStorage();
 });
