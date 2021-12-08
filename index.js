@@ -32,29 +32,22 @@ let insertTodoList = (insertTitle, insertNo) => {
     list.forEach((element) => {
       todoNo++;
       let pushobj = {};
+      pushobj["title"] = element["title"];
+      pushobj["todoNo"] = String(todoNo);
       if (insertNo == element["todoNo"] && "list" in element == true) {
-        pushobj["title"] = element["title"];
-        pushobj["todoNo"] = String(todoNo);
         todoNo++;
-        pushobj["list"] = element["list"];
-        pushobj["list"].push({"title":insertTitle,"todoNo":String(todoNo)});
-        tempList.push(pushobj);
-      } else if (insertNo == element["todoNo"] && "list" in element == false) {
-        pushobj["title"] = element["title"];
-        pushobj["todoNo"] = String(todoNo);
-        todoNo++;
-        pushobj["list"] = [{"title":insertTitle,"todoNo":String(todoNo)}];
-        tempList.push(pushobj);
+        if ("list" in element == true) {
+          pushobj["list"] = element["list"];
+          pushobj["list"].push({"title":insertTitle,"todoNo":String(todoNo)});
+        } else {
+          pushobj["list"] = [{"title":insertTitle,"todoNo":String(todoNo)}];
+        }
       } else if (insertNo != element["todoNo"] && "list" in element == true) {
-        pushobj["title"] = element["title"];
-        pushobj["todoNo"] = String(todoNo);
-        pushobj["list"] = element["list"];
-        tempList.push(pushobj);
-      } else {
-        pushobj["title"] = element["title"];
-        pushobj["todoNo"] = String(todoNo);
-        tempList.push(pushobj);
+        if ("list" in element == true) {
+          pushobj["list"] = element["list"];
+        }
       }
+      tempList.push(pushobj);
       if ("list" in element) {
         recursive(element["list"], insertTitle, insertNo);
       }
