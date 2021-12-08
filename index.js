@@ -111,6 +111,7 @@ $('#attribute').on('click', function() {
     pushList["todoNo"] = String(todoNo + 1);
     todoList["list"].push(pushList);
   }
+  $("#inputToDo").val("");
   makeTodoList(todoList["list"]);
   setLocalStorage();
 });
