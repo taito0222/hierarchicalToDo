@@ -37,6 +37,7 @@ let insertTodoList = (insertTitle, insertNo) => {
       if (insertNo == element["todoNo"]) {
         if ("list" in element == true) {
           pushobj["list"] = recursive(element["list"], insertTitle, insertNo);
+          todoNo++;
           pushobj["list"].push({"title":insertTitle,"todoNo":String(todoNo)});
         } else {
           todoNo++;
