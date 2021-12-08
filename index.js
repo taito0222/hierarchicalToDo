@@ -27,8 +27,8 @@ let makeHTMLElement = (list) => {
 }
 // todoListの追加
 let insertTodoList = (insertTitle, insertNo) => {
-  let tempList = [];
   let recursive = (list, insertTitle, insertNo) => {
+    let tempList = [];
     list.forEach((element) => {
       todoNo++;
       let pushobj = {};
@@ -47,10 +47,10 @@ let insertTodoList = (insertTitle, insertNo) => {
           pushobj["list"] = recursive(element["list"], insertTitle, insertNo);
         }
       }
+      tempList.push(pushobj);
     })
     return tempList;
   }
-  tempList.push(pushobj);
   todoNo = 0;
   todoList["list"] = recursive(todoList["list"], insertTitle, insertNo);
 }
