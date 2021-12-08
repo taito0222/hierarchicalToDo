@@ -57,24 +57,27 @@ let insertTodoList = (insertTitle, insertNo) => {
 }
 // todoListの削除
 let deleteTodoList = (deleteNo) => {
-  let tempList = [];
+  let deleteFlag = false;
   let recursive = (list, deleteNo) => {
+    let tempList = [];
     list.forEach((element) => {
       todoNo++;
-      if (deleteNo != element["todoNo"]) {
-        let pushList = {"title":"","todoNo":""};
-        pushList["title"] = element["title"];
-        pushList["todoNo"] = String(todoNo);
-        tempList.push(pushList);
-      }
-      if ("list" in element) {
-        recursive(element["list"]);
+      if (deleteNo == element["todoNo"] && deleteFlag == false) {
+        continue;
+      } else {
+        let pushobj = {};
+        pushobj["title"] = element["title"];
+        pushobj["todoNo"] = String(todoNo);
+        if ("list" in element == true) {
+          pushobj["list"] = recursive(element["list"], deleteNo);
+        }
+        tempList.push(pushobj);
       }
     })
+    return tempList;
   }
   todoNo = 0;
-  recursive(todoList["list"], deleteNo);
-  todoList["list"] = tempList;
+  todoList["list"] = recursive(todoList["list"], deleteNo);
 }
 // localstorage取得
 let getLocalStorage = () => {
