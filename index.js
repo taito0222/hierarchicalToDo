@@ -89,6 +89,7 @@ let setLocalStorage = () => {
   let setJSON = JSON.stringify(todoList);
   localStorage.setItem("todoList", setJSON);
 }
+
 // localstorageチェック
 getLocalStorage();
 if (todoList) {
@@ -118,6 +119,13 @@ $('#remove').on('click', function() {
   getLocalStorage();
   let deleteTodoNo = $('[name=list]:checked').val();
   deleteTodoList(deleteTodoNo);
+  makeTodoList(todoList["list"]);
+  setLocalStorage();
+});
+// 全削除ボタン押下時
+$('#allRemove').on('click', function() {
+  getLocalStorage();
+  todoList["list"] = [];
   makeTodoList(todoList["list"]);
   setLocalStorage();
 });
