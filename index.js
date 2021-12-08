@@ -43,6 +43,7 @@ let insertTodoList = (insertTitle, insertNo) => {
           pushobj["list"] = [{"title":insertTitle,"todoNo":String(todoNo)}];
         }
       } else {
+        pushobj["todoNo"] = String(todoNo);
         if ("list" in element == true) {
           pushobj["list"] = element["list"];
         }
