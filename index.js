@@ -47,10 +47,10 @@ let insertTodoList = (insertTitle, insertNo) => {
           pushobj["list"] = recursive(element["list"], insertTitle, insertNo);
         }
       }
-      tempList.push(pushobj);
     })
     return tempList;
   }
+  tempList.push(pushobj);
   todoNo = 0;
   todoList["list"] = recursive(todoList["list"], insertTitle, insertNo);
 }
