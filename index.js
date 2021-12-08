@@ -99,7 +99,6 @@ $('#attribute').on('click', function() {
   let radioValue = $('[name=list]:checked').val();
   if (radioValue) {
     insertTodoList($('#inputToDo').val(), radioValue);
-    updateTodoNo();
   } else {
     let pushList = {"title":"","todoNo":""};
     pushList["title"] = $('#inputToDo').val();
