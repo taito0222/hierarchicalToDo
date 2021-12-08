@@ -63,7 +63,6 @@ let deleteTodoList = (deleteNo) => {
     list.forEach((element) => {
       todoNo++;
       if (deleteNo == element["todoNo"] && deleteFlag == false) {
-        continue;
       } else {
         let pushobj = {};
         pushobj["title"] = element["title"];
